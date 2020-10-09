@@ -15,8 +15,8 @@ import Swiper from 'swiper/bundle' // 引入swiper.js
 import 'swiper/swiper-bundle.min.css' // 引入swiper.css
 
 export default {
-  mounted () {
-   new Swiper('.swiper-container', {
+  updated () {
+    new Swiper('.swiper-container', {
       // loop:true,
       pagination: {
         el: '.swiper-pagination'

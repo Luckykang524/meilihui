@@ -1,7 +1,7 @@
 <template>
     <div>
-        <ul v-if='goodsList.length'>
-            <li v-for="data in goodsList" :key="data.productId" @click=handleDetailClick(data.productId)>
+        <ul>
+            <li v-for="data in goodsList" :key="data.productId" @click=handleClick(data.productId)>
                 <img :src="data.imageUrl" alt="">
                 <div>{{data.brandName}}</div>
                 <div class="product">{{data.productName}}</div>
@@ -26,16 +26,14 @@ export default {
   },
 
   mounted () {
-    axios.get(`http://www.mei.com/appapi/event/product/v3?pageIndex=1&categoryId=${this.$route.params.categoryid}&key=&sort=&timestamp=1602222914880&summary=6c92263af328aefd62f992e94977b214&platform_code=H5`).then(res => {
+    axios.get('http://www.mei.com/appapi/event/product/v3?pageIndex=1&categoryId=2040204090000008732&key=&sort=&timestamp=1602208148483&summary=479eeb7db1f37dc71885086b81d1ddaf&platform_code=H5').then(res => {
+      // console.log(res.data.products)
       this.goodsList = res.data.products
     })
   },
   methods: {
-    handleDetailClick (id) {
-      // 第二个只能写id不然会报错
-      this.$router.push(`/goods/${this.$route.params.categoryid}/${id}`)
-      // 第二种办法--不常用
-      // this.$router.push({path:"/detail",query:{myid:this.$route.params.myid,id:id}})
+    handleClick (id) {
+      this.$router.push(`/detail/${id}`)
     }
   }
 }

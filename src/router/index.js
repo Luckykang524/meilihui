@@ -23,13 +23,20 @@ const routes = [
     component: Center
   },
   {
-    path: '/detail',
-    component: Detail
-  },
-  {
-    path: '/goods',
+    path: '/goods/:categoryid',
     component: Goods
   },
+  {
+    path: '/goods/:categoryid/:goodsid',
+    name: 'Detail',
+    component: Detail
+  },
+  // 第二种办法--不常用
+  /* {
+    path:'/detail',
+    name:'Detail',
+    component:Detail
+  }, */
   {
     path: '/login',
     component: Login
@@ -53,11 +60,11 @@ const routes = [
   {
     path: '/woman',
     component: Woman
-  },
-  {
-    path: '*',
-    redirect: '/recommend'
   }
+  // {
+  //   path: '*',
+  //   redirect: '/recommend'
+  // }
 ]
 
 const router = new VueRouter({
