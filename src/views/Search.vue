@@ -44,7 +44,6 @@ export default {
     },
     toSearchGoods (name) {
       this.$router.push(`/searchgoods/${encodeURI(name)}`)
-      console.log(encodeURI(name))
     }
   }
   // computed:{

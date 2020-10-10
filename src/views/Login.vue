@@ -5,7 +5,6 @@
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"
-
     />
     <van-form @submit="onSubmit">
       <van-field
