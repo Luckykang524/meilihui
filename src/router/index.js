@@ -10,6 +10,7 @@ import Woman from '../views/Woman.vue'
 import Oversea from '../views/Oversea.vue'
 import Recommend from '../views/Recommend.vue'
 import Search from '../views/Search.vue'
+import SearchGoods from '../views/SearchGoods.vue'
 
 Vue.use(VueRouter)
 
@@ -55,9 +56,13 @@ const routes = [
     component: Woman
   },
   {
-    path: '*',
-    redirect: '/recommend'
-  }
+    path: '/searchgoods/:name',
+    component: SearchGoods
+  },
+  // {
+  //   path: '*',
+  //   redirect: '/recommend'
+  // }
 ]
 
 const router = new VueRouter({

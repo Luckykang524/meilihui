@@ -2,7 +2,7 @@
   <nav v-top>
     <div>
       <span @click="handleLogin">登录</span>
-      <div href="" class="search" @click="handleSearch()"><span></span>McQ</div>
+      <div href="" class="search" @click="handleSearch()"><span></span>VERSACE</div>
       <span class="iconfont icon-bags" @click="handleCart()"></span>
     </div>
     <ul>
@@ -18,7 +18,6 @@ import Vue from 'vue'
 Vue.directive('top', {
   inserted (el) {
     window.onscroll = () => {
-      // console.log('11111111111111111')
       if ((document.body.scrollTop || document.documentElement.scrollTop) > 0) {
         el.className = 'change'
       } else {
@@ -72,7 +71,6 @@ export default {
     justify-content: space-around;
     height: 40px;
     line-height: 40px;
-    font-weight: bold;
     .icon-bags{
       font-size: 20px;
     }
@@ -84,6 +82,7 @@ export default {
       margin-top: 3px;
       text-align: center;
       line-height: 34px;
+      // color: #ccc;
     }
   }
   .change{

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <navbar v-show="$store.state.isNavbarShow"></navbar>
     <router-view></router-view>
   </div>
 </template>
