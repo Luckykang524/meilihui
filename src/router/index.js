@@ -58,7 +58,7 @@ const routes = [
   {
     path: '/searchgoods/:name',
     component: SearchGoods
-  },
+  }
   // {
   //   path: '*',
   //   redirect: '/recommend'

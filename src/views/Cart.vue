@@ -16,34 +16,32 @@
 </template>
 <script>
 import Vue from 'vue'
-import { NavBar } from 'vant'
-import { Button } from 'vant';
+import { NavBar, Button } from 'vant'
 
 Vue.use(Button)
 Vue.use(NavBar)
 export default {
-  data(){
+  data () {
     return {
 
     }
   },
-  mounted(){
+  mounted () {
     this.$store.commit('hide')
-
   },
-  beforeDestroy(){
+  beforeDestroy () {
     this.$store.commit('show')
   },
-  methods:{
-    onClickLeft() {
+  methods: {
+    onClickLeft () {
       this.$router.push('/recommend')
     },
-    handleLogin(){
+    handleLogin () {
       this.$router.push('/login')
     }
   },
-  computed:{
-    checkToken(){
+  computed: {
+    checkToken () {
       // if(!localStorage.getItem('token')){
       //   return true
       // } else {

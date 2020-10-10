@@ -33,32 +33,30 @@
 </template>
 <script>
 import Vue from 'vue'
-import { Form } from 'vant';
-import { Field } from 'vant';
-import { Button } from 'vant';
-import { NavBar } from 'vant';
-Vue.use(Form).use(Field).use(Button).use(NavBar);
+import { Form, Field, Button, NavBar } from 'vant'
+
+Vue.use(Form).use(Field).use(Button).use(NavBar)
 export default {
-  data() {
+  data () {
     return {
       username: '',
-      password: '',
-    };
+      password: ''
+    }
   },
   methods: {
-    onSubmit(values) {
-      console.log('submit', values);
+    onSubmit (values) {
+      console.log('submit', values)
     },
-    onClickLeft() {
+    onClickLeft () {
       this.$router.push('/recommend')
-    },
+    }
   },
-  mounted(){
+  mounted () {
     this.$store.commit('hide')
   },
-  beforeDestroy(){
+  beforeDestroy () {
     this.$store.commit('show')
-  },
+  }
   // methods:{
   //   backhome(){
   //     this.$router.push('/recommend')

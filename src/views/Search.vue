@@ -15,40 +15,38 @@
   </div>
 </template>
 <script>
-import Vue from 'vue';
+import Vue from 'vue'
 import axios from 'axios'
-import { Search } from 'vant';
+import { Search } from 'vant'
 
-Vue.use(Search);
+Vue.use(Search)
 export default {
-  data(){
+  data () {
     return {
-      value:'VERSACE',
-      infoList:[]
+      value: 'VERSACE',
+      infoList: []
     }
   },
-  mounted(){
+  mounted () {
     this.$store.commit('hide')
-   
-
   },
-  beforeDestroy(){
+  beforeDestroy () {
     this.$store.commit('show')
   },
   methods: {
-    onCancel() {
+    onCancel () {
       this.$router.push('/recommend')
     },
-    searchValue(){
+    searchValue () {
       axios.get(`http://www.mei.com/appapi/search/searchSuggest/v3?text=${this.value}`).then(res => {
-      this.infoList = res.data.result
+        this.infoList = res.data.result
       })
     },
-    toSearchGoods(name){
+    toSearchGoods (name) {
       this.$router.push(`/searchgoods/${encodeURI(name)}`)
       console.log(encodeURI(name))
     }
-  },
+  }
   // computed:{
   //   computedValue(){
   //     return this.value.encode()

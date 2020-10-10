@@ -25,7 +25,7 @@
             <p>{{item.englishName}}</p>
             <p>{{item.chineseName}}</p>
             <p>{{item.discountText}}</p>
-          </div> 
+          </div>
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
             <p>{{item.englishName}}</p>
             <p>{{item.chineseName}}</p>
             <p>{{item.discountText}}</p>
-          </div> 
+          </div>
         </div>
       </div>
     </div>
