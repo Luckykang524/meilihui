@@ -9,11 +9,13 @@
     </banner>
     <ul>
       <li v-for="data in goodsList" :key="data.categoryId" @click=handleClick(data.categoryId)>
-          <img :src="data.imageUrl" alt="">
-          <div>
-              <div>{{data.englishName}}</div>
-              <div>{{data.chineseName}}</div>
-              <div>{{data.discountText}}</div>
+          <div :style="{backgroundImage:'url('+data.imageUrl+')'}"
+            style="height:207px;background-size:100% 100%;" class="bgImages">
+            <div class="wrap">
+                <div>{{data.englishName}}</div>
+                <div>{{data.chineseName}}</div>
+                <div>{{data.discountText}}</div>
+            </div>
           </div>
       </li>
     </ul>
@@ -61,12 +63,20 @@ export default {
 ul{
   width: 100%;
   li{
-    width: 100%;
-    img{
-      width: 100%;;
+    width: 90%;
+    margin:18px;
+    .bgImages{
+      position: relative;
+      .wrap{
+        width: calc(100% - 10px);
+        height: 80px;
+        padding-left: 10px;
+        color: white;
+        // font-weight: bolder;
+        position: absolute;
+        bottom: 0;
+        background:-webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(rgba(0,0,0,.55)));
     }
-    div{
-      height: 50px;
     }
   }
 }

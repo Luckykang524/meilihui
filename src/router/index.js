@@ -60,11 +60,11 @@ const routes = [
   {
     path: '/woman',
     component: Woman
+  },
+  {
+    path: '*',
+    redirect: '/recommend'
   }
-  // {
-  //   path: '*',
-  //   redirect: '/recommend'
-  // }
 ]
 
 const router = new VueRouter({
