@@ -1,6 +1,13 @@
 <template>
   <div>
-    <span>{{dataList.brand}}</span>
+    <van-nav-bar
+      :title="dataList.brand"
+      left-text="返回"
+      left-arrow
+      @click-left="onClickLeft"
+      :fixed="true"
+      style="z-index:3"
+    />
     <detail-swiper>
       <div class="swiper-slide" v-for="(data,index) in dataList.images" :key="index">
         <div :style="{backgroundImage:'url('+data.smallImgUrl+')'}" style="height:440px;background-size:cover;background-position:center;"></div>
@@ -20,13 +27,21 @@
         </li>
       </ul>
     </div>
-    <detail-bar class="detailBar"></detail-bar>
+    <van-goods-action>
+      <van-goods-action-icon icon="chat-o" text="客服" dot />
+      <van-goods-action-icon icon="cart-o" text="购物车" badge="2" />
+       <van-goods-action-icon icon="star" text="已收藏" color="#ff5000" />
+      <van-goods-action-button type="warning" text="加入购物车" />
+      <van-goods-action-button type="danger" text="立即购买" />
+    </van-goods-action>
   </div>
 </template>
 <script>
 import detailSwiper from './detail/DetailSwiper'
-import detailBar from './detail/DetailBar'
 import http from '../util/http'
+import { NavBar, GoodsAction, GoodsActionIcon, GoodsActionButton } from 'vant'
+import Vue from 'vue'
+Vue.use(NavBar).use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton)
 export default {
   data () {
     return {
@@ -35,22 +50,26 @@ export default {
     }
   },
   components: {
-    detailSwiper,
-    detailBar
+    detailSwiper
   },
-  computed: {
-
+  methods: {
+    onClickLeft () {
+      this.$router.back()
+    }
   },
   mounted () {
-  // console.log(this.$route)
+    this.$store.commit('hide')
+    // console.log(this.$route)
     http(`/product/detail/v3?categoryId=${this.$route.params.categoryid}&productId=${this.$route.params.goodsid}&platform_code=H5&timestamp=1602214037777&summary=1c23078e00aacd7780232d5a13b2688c`).then(res => {
     //  console.log(res.data.infos)
       this.dataList = res.data.infos
       // console.log(this.dataList.description.attributesList)
       this.descriptionList = this.dataList.description.attributesList
     })
+  },
+  beforeDestroy () {
+    this.$store.commit('show')
   }
-
 }
 </script>
 <style lang="scss" scoped>
@@ -79,7 +98,6 @@ export default {
       width: calc(100% - 90px);
     }
   }
-
 }
 .detailBar{
   height: 40px;

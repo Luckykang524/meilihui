@@ -65,11 +65,11 @@ const routes = [
   {
     path: '/searchgoods/:name',
     component: SearchGoods
+  },
+  {
+    path: '*',
+    redirect: '/recommend'
   }
-  // {
-  //   path: '*',
-  //   redirect: '/recommend'
-  // }
 ]
 
 const router = new VueRouter({

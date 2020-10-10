@@ -1,5 +1,12 @@
 <template>
   <div>
+    <van-nav-bar
+      title="商品列表"
+      left-text="返回"
+      left-arrow
+      @click-left="onClickLeft"
+      :fixed="true"
+    />
     <van-list
       v-model="loading"
       :finished="finished"
@@ -16,9 +23,9 @@
         class="goodsListStyle"
       >
         <img :src="data.imageUrl" alt="" />
-        <div>{{ data.brandName }}</div>
+        <div style="font-weight:bold">{{ data.brandName }}</div>
         <div class="product">{{ data.productName }}</div>
-        <div>{{ data.itemPriceDto | dataFilter }}</div>
+        <div style="color:red">{{ data.itemPriceDto | dataFilter }}</div>
       </van-cell>
     </van-list>
   </div>
@@ -27,9 +34,9 @@
 <script>
 import Vue from 'vue'
 import http from '../util/http'
-import { List, Cell } from 'vant'
+import { List, Cell, NavBar } from 'vant'
 
-Vue.use(List).use(Cell)
+Vue.use(List).use(Cell).use(NavBar)
 Vue.filter('dataFilter', function (data) {
   return '￥' + data.price
 })
@@ -46,6 +53,7 @@ export default {
   },
 
   mounted () {
+    this.$store.commit('hide')
     /* axios
       .get(
         `http://www.mei.com/appapi/event/product/v3?pageIndex=1&categoryId=${this.$route.params.categoryid}&key=&sort=&timestamp=1602222914880&summary=6c92263af328aefd62f992e94977b214&platform_code=H5`
@@ -59,12 +67,18 @@ export default {
       this.totalPage = res.data.totalPages
     })
   },
+  beforeDestroy () {
+    this.$store.commit('show')
+  },
   methods: {
     handleDetailClick (id) {
       // 第二个只能写id不然会报错
       this.$router.push(`/goods/${this.$route.params.categoryid}/${id}`)
       // 第二种办法--不常用
       // this.$router.push({path:"/detail",query:{myid:this.$route.params.myid,id:id}})
+    },
+    onClickLeft () {
+      this.$router.push('/oversea')
     },
     onLoad () {
       console.log(this.current, this.totalPage)
