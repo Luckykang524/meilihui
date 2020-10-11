@@ -13,7 +13,7 @@
 
 <script>
 import banner from '../components/Banner'
-import axios from 'axios'
+import http from '../util/http'
 export default {
   data () {
     return {
@@ -24,7 +24,7 @@ export default {
     banner
   },
   mounted () {
-    axios.get('http://www.mei.com/appapi/home/mktBannerApp/v3?silo_id=2013000100000000003&platform_code=PLATEFORM_H5').then(res => {
+    http('/home/mktBannerApp/v3?silo_id=2013000100000000003&platform_code=PLATEFORM_H5').then(res => {
       this.imgList = res.data.banners
     })
   }

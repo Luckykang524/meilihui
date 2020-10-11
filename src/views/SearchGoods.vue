@@ -34,9 +34,8 @@
 </template>
 <script>
 import Vue from 'vue'
-import axios from 'axios'
 import http from '../util/http'
-import { NavBar,List,Cell } from 'vant'
+import { NavBar, List, Cell } from 'vant'
 Vue.use(NavBar).use(List).use(Cell)
 Vue.filter('dataFilter', function (data) {
   return '￥' + data.price
@@ -44,7 +43,7 @@ Vue.filter('dataFilter', function (data) {
 export default {
   data () {
     return {
-      title:this.$route.params.name,
+      title: this.$route.params.name,
       goodsList: [],
       loading: false,
       finished: false,
@@ -53,17 +52,17 @@ export default {
     }
   },
   mounted () {
-    axios.get(`http://www.mei.com/appapi/search/searchKey/v3?pageIndex=1&q=${this.$route.params.name}&sort=&key=&brandNameEn=${this.$route.params.name}&brandNameZh=&type=brand`).then(res => {
+    http(`/search/searchKey/v3?pageIndex=1&q=${this.$route.params.name}&sort=&key=&brandNameEn=${this.$route.params.name}&brandNameZh=&type=brand`).then(res => {
       this.goodsList = res.data.products
       this.totalPage = res.data.totalPages
     })
-    
+
     this.$store.commit('hide')
   },
   beforeDestroy () {
     this.$store.commit('show')
   },
-  methods:{
+  methods: {
     onClickLeft () {
       this.$router.push('/search')
     },
@@ -90,12 +89,12 @@ export default {
           this.goodsList = [...this.goodsList, ...res.data.products];
           this.loading = false;
         }); */
-      axios.get(`http://www.mei.com/appapi/search/searchKey/v3?pageIndex=${this.current}&q=${this.$route.params.name}&sort=&key=&brandNameEn=${this.$route.params.name}&brandNameZh=&type=brand`).then((res) => {
+      http(`/search/searchKey/v3?pageIndex=${this.current}&q=${this.$route.params.name}&sort=&key=&brandNameEn=${this.$route.params.name}&brandNameZh=&type=brand`).then((res) => {
         this.goodsList = [...this.goodsList, ...res.data.products]
         this.loading = false
       })
     }
-    
+
   }
 }
 </script>

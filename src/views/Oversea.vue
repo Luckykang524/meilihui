@@ -25,7 +25,7 @@
 <script>
 // import Vue from 'vue'
 import banner from '../components/Banner'
-import axios from 'axios'
+import http from '../util/http'
 /* Vue.filter('dataFilter',function(data){
   return '￥'+ data.price
 }) */
@@ -41,10 +41,10 @@ export default {
     banner
   },
   mounted () {
-    axios.get('http://www.mei.com/appapi/home/mktBannerApp/v3?silo_id=2013000100000000011&platform_code=PLATEFORM_H5').then(res => {
+    http('/home/mktBannerApp/v3?silo_id=2013000100000000011&platform_code=PLATEFORM_H5').then(res => {
       this.imgList = res.data.banners
     })
-    axios.get('http://www.mei.com/appapi/silo/eventForH5?categoryId=crossborder&pageIndex=1&timestamp=1602221676422&summary=8468bc26459a2ac227fe816c950faedc&platform_code=H5').then(res => {
+    http('/silo/eventForH5?categoryId=crossborder&pageIndex=1&timestamp=1602221676422&summary=8468bc26459a2ac227fe816c950faedc&platform_code=H5').then(res => {
       console.log(res.data.eventList)
       this.goodsList = res.data.eventList
     })

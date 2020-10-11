@@ -16,7 +16,7 @@
 </template>
 <script>
 import Vue from 'vue'
-import axios from 'axios'
+import http from '../util/http'
 import { Search } from 'vant'
 
 Vue.use(Search)
@@ -38,7 +38,7 @@ export default {
       this.$router.push('/recommend')
     },
     searchValue () {
-      axios.get(`http://www.mei.com/appapi/search/searchSuggest/v3?text=${this.value}`).then(res => {
+      http(`/search/searchSuggest/v3?text=${this.value}`).then(res => {
         this.infoList = res.data.result
       })
     },
